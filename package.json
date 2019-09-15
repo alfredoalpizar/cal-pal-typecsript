@@ -6,6 +6,7 @@
   "devDependencies": {
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^4.3.5",
     "ts-loader": "^6.1.0",
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",
@@ -14,6 +15,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1"
   }
 }
