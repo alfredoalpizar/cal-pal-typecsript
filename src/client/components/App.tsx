@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SideBar from './components/SideBar';
-import Content from './components/Content';
+import SideBar from './SideBar';
+import Content from './Content';
 
 const App: React.FC = () => (
   <div style={{ display: 'flex' }}>
