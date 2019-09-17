@@ -3,3 +3,5 @@ yarn.lock
 dist/bundle.js
 src/server/server.js
 env.ts
+env.js
+src/types/index.js
