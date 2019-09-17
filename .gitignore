@@ -5,3 +5,5 @@ src/server/server.js
 env.ts
 env.js
 src/types/index.js
+src/server/schema.js
+src/server/util/fetch.js
