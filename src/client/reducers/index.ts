@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import macrosReducer from './macrosReducer';
+import foodsReducer from './foodsReducer';
+
 // import entriesReducer from './entriesReducer';
-// import foodsReducer from './foodsReducer';
 // import userReducer from './userReducer';
+
 
 export default combineReducers({
   macros: macrosReducer,
+  foods: foodsReducer,
   // entries: entriesReducer,
-  // foods: foodsReducer,
   // user: userReducer,
 });
