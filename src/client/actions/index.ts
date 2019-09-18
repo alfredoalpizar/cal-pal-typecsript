@@ -1,24 +1,33 @@
-import { Dispatch } from 'redux';
+import { Dispatch, AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import ActionTypes from '../constants/index';
+import {
+  LoadFoodsAction, AddMacrosTodayAction, LoadMacrosTodayAction, Macros, Food,
+} from '../../types/index';
+
 
 export const loadFoods = (query: string): Function => (dispatch: Dispatch): void => {
   fetch(`/api/search?q=${query}`)
     .then(res => res.json())
-    .then(data => dispatch({ type: ActionTypes.LOAD_FOODS, payload: data }))
+    .then((data: Food[]) => dispatch<LoadFoodsAction>({
+      type: ActionTypes.LOAD_FOODS, payload: data,
+    }))
     .catch(err => console.log('error:', err));
 };
 
-export const addMacrosToday = macros => ({
+export const addMacrosToday = (macros: Macros): AddMacrosTodayAction => ({
   type: ActionTypes.ADD_MACROS_TODAY,
   payload: macros,
 });
 
 
-export const loadMacrosToday = () => (dispatch: Dispatch): void => {
+export const loadMacrosToday = () => (dispatch: ThunkDispatch<void, void, AnyAction>): void => {
   fetch(`/api/load-macros-today?date=${Date.now()}`)
     .then(res => res.json())
-  // .then(data => dispatch({ type: types.LOAD_MACROS_TODAY, payload: data }))
-    .then(data => console.log(`Data in front end from macros-today: ${data}`))
+    .then(data => dispatch<LoadMacrosTodayAction>(
+      { type: ActionTypes.LOAD_MACROS_TODAY, payload: data },
+    ))
+    // .then(data => console.log(`Data in front end from macros-today: ${data}`))
     .catch(err => console.log('error in getting /api/macros-today', err));
 };
 
