@@ -7,7 +7,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = React.useState('');
   const dispatch = useDispatch();
   const submit = () => {
-    dispatch(login({ username, password }));
+    // dispatch(login({ username, password }));
   };
   return (
     <div className="login">
