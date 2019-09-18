@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { loadMacrosToday } from './actions/index';
+
 
 const store = createStore(reducers, applyMiddleware(thunk));
-store.dispatch(loadMacrosToday());
-
 export default store;
