@@ -12,28 +12,12 @@ export interface Serving {
     macros: Macros;
 }
 export interface Food {
-    ndbno: number;
+    ndbno: string;
     name: string;
     manu: string;
     servings: Serving[];
 }
 
-
-export interface MacrosState {
-    macrosPresets: ([]|Macros[]);
-    selectedPreset: (void| Macros);
-    macrosToday: Macros;
-}
-
-export interface FoodState{
-    foodList: Food[];
-
-}
-
-export interface StoreState {
-    foods: FoodState;
-    macros: MacrosState;
-}
 
 export interface LoadFoodsAction {
     type: ActionTypes.LOAD_FOODS;
