@@ -8,7 +8,7 @@
     "dev": "yarn start & webpack-dev-server --open",
     "transpile:server": "tsc src/server/server.ts",
     "transpile:client": "webpack",
-    "transpile": "yarn transpile:server & transpile:client"
+    "transpile": "yarn transpile:server & yarn transpile:client"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
