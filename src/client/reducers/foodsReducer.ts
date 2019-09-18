@@ -1,7 +1,10 @@
 import ActionTypes from '../constants/index';
-import { FoodState, LoadFoodsAction } from '../../types/index';
+import { Food, LoadFoodsAction } from '../../types/index';
 
+export interface FoodState{
+  foodList: Food[];
 
+}
 const initialState: FoodState = {
   foodList: [],
 };

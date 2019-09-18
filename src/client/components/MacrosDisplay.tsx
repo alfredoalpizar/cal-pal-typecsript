@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import LabeledText from './LabeledText';
-import { StoreState } from '../../types/index';
+import { StoreState } from '../reducers/index';
 
 const MacrosDisplay: React.FC = () => {
   const { macrosToday } = useSelector((state: StoreState) => state.macros);

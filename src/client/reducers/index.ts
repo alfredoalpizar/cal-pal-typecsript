@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import macrosReducer from './macrosReducer';
-import foodsReducer from './foodsReducer';
-
+import macrosReducer, { MacrosState } from './macrosReducer';
+import foodsReducer, { FoodState } from './foodsReducer';
 // import entriesReducer from './entriesReducer';
 // import userReducer from './userReducer';
 
-
-export default combineReducers({
+export interface StoreState {
+  macros: MacrosState;
+  foods: FoodState;
+}
+export default combineReducers<StoreState>({
   macros: macrosReducer,
   foods: foodsReducer,
   // entries: entriesReducer,

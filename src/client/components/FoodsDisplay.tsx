@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import FoodDisplay from './FoodDisplay';
-import { StoreState, Food } from '../../types/index';
+import { Food } from '../../types/index';
+import { StoreState } from '../reducers/index';
 
 const FoodsDisplay: React.FC = () => {
   const foodList = useSelector((state: StoreState) => state.foods.foodList);
