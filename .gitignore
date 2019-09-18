@@ -7,3 +7,4 @@ env.js
 src/types/index.js
 src/server/schema.js
 src/server/util/fetch.js
+src/client/constants/index.js
