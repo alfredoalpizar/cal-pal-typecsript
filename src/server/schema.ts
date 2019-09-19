@@ -1,6 +1,6 @@
 import * as graphql from 'graphql';
 import fetch from './util/fetch';
-import apiKey from '../../env';
+import { API_KEY } from '../../env';
 import { Food } from '../types/index';
 
 
@@ -70,13 +70,13 @@ const RootQuery = new GraphQLObjectType({
       args: { q: { type: GraphQLString } },
       resolve(parentValue, args) {
         const { q } = args;
-        const url = `https://api.nal.usda.gov/ndb/search?api_key=${apiKey}&q=${q}&max=10`;
+        const url = `https://api.nal.usda.gov/ndb/search?api_key=${API_KEY}&q=${q}&max=10`;
         return fetch(url)
           .then((data) => {
             const items = JSON.parse(data).list.item;
             const reportsURL = items.reduce(
               (acc: string, { ndbno }: {ndbno: string}) => `${acc}&ndbno=${ndbno}`,
-              `https://api.nal.usda.gov/ndb/V2/reports?api_key=${apiKey}&format=JSON`,
+              `https://api.nal.usda.gov/ndb/V2/reports?api_key=${API_KEY}&format=JSON`,
             );
 
             return fetch(reportsURL)
