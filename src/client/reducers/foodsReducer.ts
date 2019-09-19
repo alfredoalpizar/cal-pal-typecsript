@@ -1,5 +1,5 @@
 import ActionTypes from '../constants/index';
-import { Food, LoadFoodsAction } from '../../types/index';
+import { Food, Action } from '../../types/index';
 
 export interface FoodState{
   foodList: Food[];
@@ -10,7 +10,7 @@ const initialState: FoodState = {
 };
 
 
-const foodsReducer = (state: FoodState = initialState, action: LoadFoodsAction): FoodState => {
+const foodsReducer = (state: FoodState = initialState, action: Action): FoodState => {
   switch (action.type) {
     case ActionTypes.LOAD_FOODS:
       return {

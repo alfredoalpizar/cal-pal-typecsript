@@ -34,6 +34,8 @@ export interface LoadMacrosTodayAction {
     payload: Macros;
 }
 
+export type Action = AddMacrosTodayAction | LoadMacrosTodayAction |
+AddMacrosTodayAction | LoadFoodsAction;
 // export interface AddMacrosPresetAction {
 //     type: ActionTypes.ADD_MACROS_PRESETS;
 //     payload: Macros;

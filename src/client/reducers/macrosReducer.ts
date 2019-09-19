@@ -1,6 +1,6 @@
 import ActionTypes from '../constants/index';
 import {
-  Macros, AddMacrosTodayAction, LoadMacrosTodayAction,
+  Macros, Action,
 } from '../../types/index';
 
 export interface MacrosState {
@@ -23,8 +23,7 @@ const initialState: MacrosState = {
 
 const macrosReducer = (
   state = initialState,
-  action: AddMacrosTodayAction | LoadMacrosTodayAction |
-   AddMacrosTodayAction,
+  action: Action,
 ): MacrosState => {
   switch (action.type) {
     case ActionTypes.LOAD_MACROS_TODAY:
