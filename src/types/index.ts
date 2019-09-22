@@ -1,5 +1,6 @@
 import ActionTypes from '../client/constants/index';
 
+
 export interface Macros {
     calories: number;
     protein: number;
@@ -33,6 +34,24 @@ export interface LoadMacrosTodayAction {
     type: ActionTypes.LOAD_MACROS_TODAY;
     payload: Macros;
 }
+
+export interface LoginAction {
+    type: ActionTypes.LOGIN;
+    payload: SignupData;
+}
+
+export interface SignupData {
+    username: string;
+    password?: string;
+    height: string;
+    weight: string;
+    uid?: string;
+}
+export interface SignupAction {
+    type: ActionTypes.SIGNUP;
+    payload: SignupData;
+}
+
 
 export type Action = AddMacrosTodayAction | LoadMacrosTodayAction |
 AddMacrosTodayAction | LoadFoodsAction;
