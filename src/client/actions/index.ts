@@ -2,7 +2,8 @@ import { Dispatch, AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import ActionTypes from '../constants/index';
 import {
-  LoadFoodsAction, AddMacrosTodayAction, LoadMacrosTodayAction, Macros, Food,
+  LoadFoodsAction, AddMacrosTodayAction, LoginAction,
+  LoadMacrosTodayAction, Macros, Food, SignupAction, SignupData,
 } from '../../types/index';
 
 
@@ -31,81 +32,85 @@ export const loadMacrosToday = () => (dispatch: ThunkDispatch<void, void, AnyAct
     .catch(err => console.log('error in getting /api/macros-today', err));
 };
 
-// export const login = ({ username, password }) => (dispatch) => {
-//   fetch('/auth/login', {
-//     method: 'POST',
-//     credentials: 'same-origin',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//     },
-//     body: JSON.stringify({ username, password }),
-//   })
-//     .then(resp => resp.json())
-//     .then((data) => {
-//       if (data.err) return dispatch({ type: types.LOGIN, payload: { err: data.err } });
-//       const {
-//         uid, height, weight,
-//       } = data;
-//       return dispatch({
-//         type: types.LOGIN,
-//         payload: {
-//           username: data.username, uid, height, weight,
-//         },
-//       });
-//     })
-//     .catch(err => dispatch({ type: types.LOGIN, payload: { err } }));
-// };
+export const login = ({ username, password }: {
+  username: string; password: string;
+}) => (dispatch: ThunkDispatch<void, void, AnyAction>): void => {
+  fetch('/auth/login', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ username, password }),
+  })
+    .then(resp => resp.json())
+    .then((data) => {
+      if (data.err) return console.log('ERROR: ', data.err);
+      const {
+        uid, height, weight,
+      } = data;
+      return dispatch<LoginAction>({
+        type: ActionTypes.LOGIN,
+        payload: {
+          username: data.username, uid, height, weight,
+        },
+      });
+    })
+    .catch(err => dispatch({ type: ActionTypes.LOGIN, payload: { err } }));
+};
 
-// export const signup = ({ username, password }) => (dispatch) => {
-//   fetch('/auth/signup', {
-//     method: 'POST',
-//     credentials: 'same-origin',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//     },
-//     body: JSON.stringify({ username, password }),
-//   })
-//     .then(resp => resp.json())
-//     .then((data) => {
-//       if (data.err) return dispatch({ type: types.LOGIN, payload: { err: data.err } });
+export const signup = (body: SignupData) => (
+  dispatch: ThunkDispatch<void, void, AnyAction>,
+): void => {
+  fetch('/auth/signup', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+    .then(resp => resp.json())
+    .then((data) => {
+      if (data.err) return console.log(`ERROR POSTING SIGNUP: ${data.err}`);
+      const {
+        uid, height, weight,
+      } = data;
+      // return console.log(data);
+      return dispatch<SignupAction>({
+        type: ActionTypes.SIGNUP,
+        payload: {
+          username: data.username, uid, height, weight,
+        },
+      });
+    })
+    .catch(err => console.log(`ERROR POSTING SIGNUP: ${err}`));
+};
 
-//       const {
-//         uid, height, weight,
-//       } = data;
-//       return dispatch({
-//         type: types.SIGNUP,
-//         payload: {
-//           username: data.username, uid, height, weight,
-//         },
-//       });
-//     })
-//     .catch(err => dispatch({ type: types.SIGNUP, payload: { err } }));
-// };
-
-// export const verifyToken = () => (dispatch) => {
-//   fetch('/auth/verify', {
-//     method: 'GET',
-//     credentials: 'same-origin',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//     },
-//   })
-//     .then(resp => resp.json())
-//     .then((data) => {
-//       if (data.err) return dispatch({ type: types.LOGIN, payload: { err: data.err } });
-//       const {
-//         username, uid, height, weight,
-//       } = data;
-//       return dispatch({
-//         type: types.LOGIN,
-//         payload: {
-//           username, uid, height, weight,
-//         },
-//       });
-//     })
-//     .catch(err => dispatch({ type: types.LOGIN, payload: { err } }));
-// };
+export const verifyToken = () => (dispatch: ThunkDispatch<void, void, AnyAction>) => {
+  fetch('/auth/verify', {
+    method: 'GET',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  })
+    .then(resp => resp.json())
+    .then((data) => {
+      if (data.err) console.log('ERROR: ', data.err);
+      const {
+        username, uid, height, weight,
+      } = data;
+      return dispatch({
+        type: ActionTypes.LOGIN,
+        payload: {
+          username, uid, height, weight,
+        },
+      });
+    })
+    .catch(err => console.log('ERROR: ', err));
+};
 // export const addEntry = entry => (dispatch) => {};
