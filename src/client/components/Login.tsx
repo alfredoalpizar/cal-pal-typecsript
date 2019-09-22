@@ -2,12 +2,14 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { login } from '../actions/index';
+
 const Login: React.FC = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const dispatch = useDispatch();
   const submit = () => {
-    // dispatch(login({ username, password }));
+    dispatch(login({ username, password }));
   };
   return (
     <div className="login">
